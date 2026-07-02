@@ -1,129 +1,270 @@
-/* Reset básico de estilos */
+/* Importação de uma fonte mais moderna */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 body {
-    background-color: #0f172a;
-    color: #f8fafc;
+    background-color: #030712;
+    color: #f3f4f6;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    overflow: hidden;
+    position: relative;
 }
 
-/* Caixa principal do gerador */
+/* Efeito de luzes brilhando ao fundo */
+.background-glow {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Container Estilo "Glassmorphism" (Efeito de Vidro) */
 .container {
-    background-color: #1e293b;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    background: rgba(17, 24, 39, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     width: 100%;
-    max-width: 450px;
+    max-width: 480px;
+    z-index: 1;
 }
 
-h2 {
+header {
     text-align: center;
-    margin-bottom: 25px;
-    color: #38bdf8;
+    margin-bottom: 30px;
 }
 
-/* Área de exibição da senha e botão copiar */
+.main-icon {
+    font-size: 2.5rem;
+    color: #6366f1;
+    margin-bottom: 12px;
+}
+
+header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+}
+
+header p {
+    color: #9ca3af;
+    font-size: 0.9rem;
+}
+
+/* Box da Senha */
 .password-box {
     display: flex;
-    background-color: #0f172a;
-    border: 2px solid #334155;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 14px;
+    padding: 6px;
+    margin-bottom: 8px;
+    transition: border-color 0.3s;
+}
+
+.password-box:focus-within {
+    border-color: #6366f1;
 }
 
 .password-box input {
     background: transparent;
     border: none;
     outline: none;
-    color: #f8fafc;
-    padding: 15px;
-    font-size: 18px;
+    color: #ffffff;
+    padding: 14px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
     width: 100%;
-    letter-spacing: 1px;
 }
 
 #copy-btn {
-    background-color: #38bdf8;
-    border: none;
-    color: #0f172a;
-    padding: 0 20px;
-    font-weight: bold;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: #a5b4fc;
+    padding: 0 18px;
+    border-radius: 10px;
+    font-size: 1.1rem;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.2s;
 }
 
 #copy-btn:hover {
-    background-color: #0ea5e9;
+    background: #6366f1;
+    color: white;
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
 }
 
-/* Controle de tamanho (Slider) */
-.length-container {
-    margin-bottom: 20px;
+/* Barra de Medição de Força */
+.strength-meter {
+    height: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    margin-bottom: 30px;
+    overflow: hidden;
 }
 
-.length-container label {
-    display: block;
-    margin-bottom: 8px;
-    color: #cbd5e1;
+.strength-meter .bar {
+    height: 100%;
+    width: 65%; /* Representação visual inicial */
+    background: linear-gradient(90deg, #f43f5e, #10b981);
+    border-radius: 2px;
 }
 
-.length-container input[type="range"] {
-    width: 100%;
-    accent-color: #38bdf8;
-    cursor: pointer;
+/* Sliders e Controles */
+.control-group {
+    margin-bottom: 30px;
 }
 
-/* Opções de Checkbox */
-.options {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-    margin-bottom: 25px;
-}
-
-.option {
+.label-row {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+    margin-bottom: 12px;
 }
 
-.option input[type="checkbox"] {
+.label-text {
+    font-size: 0.95rem;
+    color: #d1d5db;
+    font-weight: 500;
+}
+
+.counter-badge {
+    background: rgba(99, 102, 241, 0.15);
+    color: #818cf8;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
     width: 18px;
     height: 18px;
-    accent-color: #38bdf8;
+    border-radius: 50%;
+    background: #6366f1;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    transition: transform 0.1s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Grid de Opções Estilo Card Ativável */
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+.option-card {
+    position: relative;
     cursor: pointer;
 }
 
-.option label {
-    color: #cbd5e1;
-    cursor: pointer;
-    user-select: none;
+.option-card input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
-/* Botão Gerar Senha */
+.card-content {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 16px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.2s ease;
+}
+
+.card-content i {
+    color: #9ca3af;
+    font-size: 1.1rem;
+}
+
+.card-content span {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #9ca3af;
+}
+
+/* Quando o checkbox estiver marcado, muda o card inteiro */
+.option-card input:checked + .card-content {
+    background: rgba(99, 102, 241, 0.08);
+    border-color: #6366f1;
+}
+
+.option-card input:checked + .card-content i {
+    color: #818cf8;
+}
+
+.option-card input:checked + .card-content span {
+    color: #ffffff;
+}
+
+.option-card:hover .card-content {
+    border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* Botão de Ação Moderno */
 #generate-btn {
     width: 100%;
-    background-color: #10b981;
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
     color: white;
     border: none;
-    padding: 15px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 14px;
     cursor: pointer;
-    transition: background 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
+    transition: all 0.3s;
 }
 
 #generate-btn:hover {
-    background-color: #059669;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(79, 70, 229, 0.5);
+    background: linear-gradient(135deg, #4338ca 0%, #4f46e5 100%);
+}
+
+#generate-btn:active {
+    transform: translateY(0);
 }

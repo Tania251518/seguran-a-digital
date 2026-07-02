@@ -3,44 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Senha Seguro</title>
+    <title>Gerador de Senhas Premium</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
+    <div class="background-glow"></div>
+
     <div class="container">
-        <h2>Gerador de Senha</h2>
+        <header>
+            <i class="fa-solid fa-shield-halved main-icon"></i>
+            <h2>Gerador de Senhas</h2>
+            <p>Crie senhas fortes e personalizadas instantaneamente.</p>
+        </header>
         
         <div class="password-box">
-            <input type="text" id="password" readonly placeholder="Sua senha aparecerá aqui">
-            <button id="copy-btn">Copiar</button>
+            <input type="text" id="password" readonly placeholder="Clique em Gerar Senha">
+            <button id="copy-btn" title="Copiar Senha">
+                <i class="fa-regular fa-copy"></i>
+            </button>
         </div>
 
-        <div class="length-container">
-            <label for="length">Comprimento: <span id="length-val">12</span> caracteres</label>
-            <input type="range" id="length" min="6" max="30" value="12">
+        <div class="strength-meter">
+            <div class="bar" id="strength-bar"></div>
         </div>
 
-        <div class="options">
-            <div class="option">
+        <div class="control-group">
+            <div class="label-row">
+                <span class="label-text">Comprimento da Senha</span>
+                <span id="length-val" class="counter-badge">16</span>
+            </div>
+            <input type="range" id="length" min="8" max="32" value="16">
+        </div>
+
+        <div class="options-grid">
+            <label class="option-card">
                 <input type="checkbox" id="uppercase" checked>
-                <label for="uppercase">Letras Maiúsculas (A-Z)</label>
-            </div>
-            <div class="option">
+                <div class="card-content">
+                    <i class="fa-solid fa-font"></i>
+                    <span>MAIÚSCULAS</span>
+                </div>
+            </label>
+
+            <label class="option-card">
                 <input type="checkbox" id="lowercase" checked>
-                <label for="lowercase">Letras Minúsculas (a-z)</label>
-            </div>
-            <div class="option">
+                <div class="card-content">
+                    <i class="fa-solid fa-italic"></i>
+                    <span>minúsculas</span>
+                </div>
+            </label>
+
+            <label class="option-card">
                 <input type="checkbox" id="numbers" checked>
-                <label for="numbers">Números (0-9)</label>
-            </div>
-            <div class="option">
+                <div class="card-content">
+                    <i class="fa-solid fa-hashtag"></i>
+                    <span>Números</span>
+                </div>
+            </label>
+
+            <label class="option-card">
                 <input type="checkbox" id="symbols">
-                <label for="symbols">Símbolos (!@#$%^&*)</label>
-            </div>
+                <div class="card-content">
+                    <i class="fa-solid fa-at"></i>
+                    <span>Símbolos</span>
+                </div>
+            </label>
         </div>
 
-        <button id="generate-btn">Gerar Senha</button>
+        <button id="generate-btn">
+            <span>Gerar Nova Senha</span>
+            <i class="fa-solid fa-arrow-right"></i>
+        </button>
     </div>
 
 </body>
