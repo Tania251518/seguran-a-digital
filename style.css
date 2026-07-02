@@ -1,0 +1,137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 40px 35px;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header i {
+  font-size: 3.5rem;
+  color: #00ffcc;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.header h1 {
+  font-size: 2.2rem;
+  background: linear-gradient(to right, #00ffcc, #00b8ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.password-display {
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(0, 255, 204, 0.3);
+  border-radius: 16px;
+  padding: 20px;
+  font-size: 1.35rem;
+  text-align: center;
+  margin-bottom: 20px;
+  min-height: 68px;
+  word-break: break-all;
+  font-family: monospace;
+  letter-spacing: 2px;
+}
+
+.copy-btn, .generate-btn {
+  width: 100%;
+  padding: 14px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.copy-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.copy-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.generate-btn {
+  background: linear-gradient(90deg, #00ffcc, #00b8ff);
+  color: #000;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.generate-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3);
+}
+
+.options {
+  margin: 25px 0;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  margin: 14px 0;
+  font-size: 1.05rem;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  width: 22px;
+  height: 22px;
+  margin-right: 12px;
+  accent-color: #00ffcc;
+}
+
+.length-control {
+  margin: 25px 0;
+}
+
+.length-control label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+input[type="range"] {
+  width: 100%;
+  accent-color: #00ffcc;
+}
+
+.strength {
+  text-align: center;
+  font-weight: bold;
+  margin: 10px 0 20px;
+  font-size: 1.1rem;
+}

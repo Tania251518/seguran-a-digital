@@ -1,81 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de Senhas Premium</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PasswordForge - Gerador de Senhas</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
 
-    <div class="background-glow"></div>
-
-    <div class="container">
-        <header>
-            <i class="fa-solid fa-shield-halved main-icon"></i>
-            <h2>Gerador de Senhas</h2>
-            <p>Crie senhas fortes e personalizadas instantaneamente.</p>
-        </header>
-        
-        <div class="password-box">
-            <input type="text" id="password" readonly placeholder="Clique em Gerar Senha">
-            <button id="copy-btn" title="Copiar Senha">
-                <i class="fa-regular fa-copy"></i>
-            </button>
-        </div>
-
-        <div class="strength-meter">
-            <div class="bar" id="strength-bar"></div>
-        </div>
-
-        <div class="control-group">
-            <div class="label-row">
-                <span class="label-text">Comprimento da Senha</span>
-                <span id="length-val" class="counter-badge">16</span>
-            </div>
-            <input type="range" id="length" min="8" max="32" value="16">
-        </div>
-
-        <div class="options-grid">
-            <label class="option-card">
-                <input type="checkbox" id="uppercase" checked>
-                <div class="card-content">
-                    <i class="fa-solid fa-font"></i>
-                    <span>MAIÚSCULAS</span>
-                </div>
-            </label>
-
-            <label class="option-card">
-                <input type="checkbox" id="lowercase" checked>
-                <div class="card-content">
-                    <i class="fa-solid fa-italic"></i>
-                    <span>minúsculas</span>
-                </div>
-            </label>
-
-            <label class="option-card">
-                <input type="checkbox" id="numbers" checked>
-                <div class="card-content">
-                    <i class="fa-solid fa-hashtag"></i>
-                    <span>Números</span>
-                </div>
-            </label>
-
-            <label class="option-card">
-                <input type="checkbox" id="symbols">
-                <div class="card-content">
-                    <i class="fa-solid fa-at"></i>
-                    <span>Símbolos</span>
-                </div>
-            </label>
-        </div>
-
-        <button id="generate-btn">
-            <span>Gerar Nova Senha</span>
-            <i class="fa-solid fa-arrow-right"></i>
-        </button>
+  <div class="container">
+    <div class="header">
+      <i class="fas fa-shield-alt"></i>
+      <h1>PasswordForge</h1>
+    </div>
+    
+    <div class="password-display" id="password">
+      Sua senha aparecerá aqui
     </div>
 
+    <button class="copy-btn" onclick="copyPassword()">
+      <i class="fas fa-copy"></i> Copiar Senha
+    </button>
+
+    <div class="strength" id="strength">Força da senha</div>
+
+    <div class="length-control">
+      <label>Comprimento: <span id="lengthValue">16</span></label>
+      <input type="range" id="length" min="8" max="32" value="16" oninput="updateLength()">
+    </div>
+
+    <div class="options">
+      <label><input type="checkbox" id="uppercase" checked> <i class="fas fa-font"></i> Maiúsculas</label>
+      <label><input type="checkbox" id="lowercase" checked> <i class="fas fa-font"></i> Minúsculas</label>
+      <label><input type="checkbox" id="numbers" checked> <i class="fas fa-hashtag"></i> Números</label>
+      <label><input type="checkbox" id="symbols"> <i class="fas fa-key"></i> Símbolos</label>
+    </div>
+
+    <button class="generate-btn" onclick="generatePassword()">
+      <i class="fas fa-dice"></i> Gerar Nova Senha
+    </button>
+  </div>
+
+  <script>
+    function generatePassword() {
+      const length = parseInt(document.getElementById('length').value);
+      const uppercase = document.getElementById('uppercase').checked;
+      const lowercase = document.getElementById('lowercase').checked;
+      const numbers = document.getElementById('numbers').checked;
+      const symbols = document.getElementById('symbols').checked;
+
+      let chars = '';
+      if (uppercase) chars += 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      if (lowercase) chars += 'abcdefghijklmnopqrstuvwxyz';
+      if (numbers) chars += '0123456789';
+      if (symbols) chars += '!@#$%^&*()_+-=[]{}|;:,.<>?';
+
+      if (chars === '') {
+        alert('Selecione pelo menos uma opção!');
+        return;
+      }
+
+      let password = '';
+      for (let i = 0; i < length; i++) {
+        password += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+
+      const display = document.getElementById('password');
+      display.textContent = password;
+      
+      updateStrength(password);
+    }
+
+    function updateStrength(password) {
+      const strengthBar = document.getElementById('strength');
+      let strength = 0;
+      
+      if (password.length >= 12) strength++;
+      if (/[A-Z]/.test(password)) strength++;
+      if (/[0-9]/.test(password)) strength++;
+      if (/[^A-Za-z0-9]/.test(password)) strength++;
+
+      if (strength <= 1) {
+        strengthBar.style.color = '#e74c3c';
+        strengthBar.textContent = '🔴 Fraca';
+      } else if (strength === 2) {
+        strengthBar.style.color = '#f1c40f';
+        strengthBar.textContent = '🟡 Média';
+      } else {
+        strengthBar.style.color = '#2ecc71';
+        strengthBar.textContent = '🟢 Forte';
+      }
+    }
+
+    function updateLength() {
+      document.getElementById('lengthValue').textContent = 
+        document.getElementById('length').value;
+    }
+
+    function copyPassword() {
+      const passwordText = document.getElementById('password').textContent;
+      if (passwordText === 'Sua senha aparecerá aqui') {
+        alert('Gere uma senha primeiro!');
+        return;
+      }
+      
+      navigator.clipboard.writeText(passwordText).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        const original = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check"></i> Copiado!';
+        btn.style.background = '#27ae60';
+        
+        setTimeout(() => {
+          btn.innerHTML = original;
+          btn.style.background = '';
+        }, 2000);
+      });
+    }
+
+    // Gerar senha inicial
+    window.onload = generatePassword;
+  </script>
 </body>
 </html>
