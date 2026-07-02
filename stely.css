@@ -1,0 +1,129 @@
+/* Reset básico de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0f172a;
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Caixa principal do gerador */
+.container {
+    background-color: #1e293b;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 450px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #38bdf8;
+}
+
+/* Área de exibição da senha e botão copiar */
+.password-box {
+    display: flex;
+    background-color: #0f172a;
+    border: 2px solid #334155;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.password-box input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #f8fafc;
+    padding: 15px;
+    font-size: 18px;
+    width: 100%;
+    letter-spacing: 1px;
+}
+
+#copy-btn {
+    background-color: #38bdf8;
+    border: none;
+    color: #0f172a;
+    padding: 0 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#copy-btn:hover {
+    background-color: #0ea5e9;
+}
+
+/* Controle de tamanho (Slider) */
+.length-container {
+    margin-bottom: 20px;
+}
+
+.length-container label {
+    display: block;
+    margin-bottom: 8px;
+    color: #cbd5e1;
+}
+
+.length-container input[type="range"] {
+    width: 100%;
+    accent-color: #38bdf8;
+    cursor: pointer;
+}
+
+/* Opções de Checkbox */
+.options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.option input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #38bdf8;
+    cursor: pointer;
+}
+
+.option label {
+    color: #cbd5e1;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Botão Gerar Senha */
+#generate-btn {
+    width: 100%;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#generate-btn:hover {
+    background-color: #059669;
+}
